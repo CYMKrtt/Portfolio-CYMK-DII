@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chaiyamongkol Ratanaburi // portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="is-booting">
+  <!-- ===== หน้าโหลดตอนเปิดเว็บ (ระบบอยู่ท้าย script.js) กด/คลิกเพื่อข้ามได้ ===== -->
+  <div class="boot" id="boot" aria-hidden="true">
+    <canvas class="boot__rain" id="boot-rain"></canvas>
+    <p class="boot__start">[ click or press any key to boot ]<span class="cursor">_</span></p>
+    <p class="boot__line"><span class="prompt">&gt;</span> <span id="boot-text"></span><span class="cursor">_</span></p>
+    <p class="boot__skip" id="boot-hint">sound on 🔊</p>
+  </div>
+
+  <!-- พื้นหลัง code ไหลจางๆ + สว่างรอบเมาส์ (ระบบอยู่ท้าย script.js) -->
+  <canvas class="bg-rain" id="bg-rain" aria-hidden="true"></canvas>
+  <canvas class="bg-rain" id="bg-glow" aria-hidden="true"></canvas>
+
+  <button type="button" class="sound-toggle" id="sound-toggle" aria-label="เปิด/ปิดเสียง">[ sound: on ]</button>
+
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <main>
+
+    <!-- ===== HERO : แก้ชื่อ / ข้อมูลตัวเอง ตรงนี้ได้เลย ===== -->
+    <section class="hero" id="top">
+      <div class="hero__inner">
+        <div class="hero__text">
+          <p class="hero__cmd"><span class="prompt">root@portfolio:~$</span> whoami</p>
+
+          <h1 class="hero__name">Chaiyamongkol<br />Ratanaburi<span class="cursor" aria-hidden="true">_</span></h1>
+
+          <p class="hero__role">
+            Digital Industry Integration (DII) <span class="dim">@</span> CAMT
+          </p>
+
+          <div class="hero__bio">
+            <p><span class="dim">&gt;</span> นักศึกษาชั้นปีที่ 1 สาขา DII วิทยาลัยศิลปะ สื่อ และเทคโนโลยี (CAMT)</p>
+            <!-- ตำแหน่งที่พิมพ์วนไปเรื่อยๆ แก้รายการได้ที่ ROLES ใน script.js -->
+            <p class="role-line"><span class="dim">&gt;</span> <span class="role-typer" id="role-typer">Full Stack Dev</span><span class="cursor" aria-hidden="true">_</span></p>
+          </div>
+
+          <dl class="hero__stats">
+            <div class="stat"><dt>age</dt><dd>18</dd></div>
+            <div class="stat"><dt>year</dt><dd>1</dd></div>
+            <!-- 2 ตัวนี้นับจากข้อมูลใน script.js ให้เอง -->
+            <div class="stat"><dt>activities</dt><dd data-stat="activities">0</dd></div>
+            <div class="stat"><dt>awards</dt><dd data-stat="awards">0</dd></div>
+          </dl>
+        </div>
+
+        <!-- รูปตัวเอง (ตัดพื้นหลังแล้ว) อยู่ที่ images/me.png
+             กดที่รูป = สลับเป็นรูปที่ 2 (images/me-2.webp) พร้อมเอฟเฟค glitch
+             ถ้าจะเปลี่ยนรูป: เอาไฟล์ใหม่ใส่โฟลเดอร์ images/ แล้วแก้ชื่อไฟล์ใน src ข้างล่าง -->
+        <button type="button" class="hero__photo" id="hero-photo" aria-label="สลับรูป">
+          <img src="images/me.png" alt="Chaiyamongkol Ratanaburi" class="hero__cutout hero__cutout--main" />
+          <img src="images/me-2.webp" alt="" class="hero__cutout hero__cutout--alt" />
+          <!-- รูปเวอร์ชัน ASCII โผล่ตอนเอาเมาส์ชี้ (ตัวอักษรอยู่ที่ ASCII_ME ใน script.js) -->
+          <pre class="hero__ascii" aria-hidden="true"></pre>
+          <span class="hero__photo-hint" aria-hidden="true">[ click_me ]</span>
+        </button>
+      </div>
+
+      <a class="scroll-hint" href="#skills">scroll_down <span class="blink" aria-hidden="true">▼</span></a>
+    </section>
+
+    <!-- ===== ทักษะ : แก้รายการได้ที่ DATA.skills ใน script.js ===== -->
+    <section class="section" id="skills">
+      <header class="section-head">
+        <p class="section-head__cmd"><span class="prompt">root@portfolio:~$</span> htop --skills</p>
+        <h2 class="section-head__title">ทักษะ</h2>
+      </header>
+      <div class="htop" id="htop"></div>
+    </section>
+
+    <!-- ===== 3 ส่วนนี้ ข้อมูลอยู่ในไฟล์ script.js ===== -->
+    <section class="section" id="activities">
+      <header class="section-head">
+        <p class="section-head__cmd"><span class="prompt">root@portfolio:~$</span> ls ./activities</p>
+        <h2 class="section-head__title">กิจกรรม</h2>
+        <p class="section-head__count" data-count></p>
+      </header>
+      <div class="carousel" data-carousel="activities">
+        <div class="carousel__track"></div>
+      </div>
+    </section>
+
+    <section class="section" id="works">
+      <header class="section-head">
+        <p class="section-head__cmd"><span class="prompt">root@portfolio:~$</span> ls ./works</p>
+        <h2 class="section-head__title">ผลงาน</h2>
+        <p class="section-head__count" data-count></p>
+      </header>
+      <div class="carousel" data-carousel="works">
+        <div class="carousel__track"></div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <header class="section-head">
+        <p class="section-head__cmd"><span class="prompt">root@portfolio:~$</span> ls ./projects</p>
+        <h2 class="section-head__title">โปรเจค</h2>
+        <p class="section-head__count" data-count></p>
+      </header>
+      <div class="carousel" data-carousel="projects">
+        <div class="carousel__track"></div>
+      </div>
+    </section>
+
+    <!-- ===== terminal ที่พิมพ์คำสั่งได้จริง (ระบบอยู่ใน script.js) ===== -->
+    <section class="section" id="terminal">
+      <header class="section-head">
+        <p class="section-head__cmd"><span class="prompt">root@portfolio:~$</span> ./shell.sh</p>
+        <h2 class="section-head__title">เทอร์มินัล</h2>
+        <p class="section-head__count">ลองพิมพ์ help แล้วกด Enter</p>
+      </header>
+      <div class="term" id="term">
+        <div class="term__bar">
+          <span class="term__path">guest@portfolio: ~</span>
+          <span class="term__dots" aria-hidden="true">● ● ●</span>
+        </div>
+        <div class="term__body" id="term-body">
+          <div class="term__out" id="term-out" aria-live="polite"></div>
+          <label class="term__line">
+            <span class="prompt">guest@portfolio:~$</span>
+            <input type="text" class="term__input" id="term-input" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="พิมพ์คำสั่ง" />
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ติดต่อ : แก้ข้อมูลตรงนี้ได้เลย ===== -->
+    <section class="section" id="contact">
+      <header class="section-head">
+        <p class="section-head__cmd"><span class="prompt">root@portfolio:~$</span> cat contact.txt</p>
+        <h2 class="section-head__title">ติดต่อ</h2>
+      </header>
+
+      <ul class="contact">
+        <li class="contact__row">
+          <span class="contact__key">email</span><span class="contact__sep">:</span>
+          <a class="contact__val" href="mailto:cymkrattanaburi@gmail.com">cymkrattanaburi@gmail.com</a>
+        </li>
+        <li class="contact__row">
+          <span class="contact__key">github</span><span class="contact__sep">:</span>
+          <a class="contact__val" href="https://github.com/CYMKrtt" target="_blank" rel="noopener noreferrer">github.com/CYMKrtt</a>
+        </li>
+        <li class="contact__row">
+          <span class="contact__key">phone</span><span class="contact__sep">:</span>
+          <a class="contact__val" href="tel:0922572589">092-257-2589</a>
+        </li>
+        <li class="contact__row">
+          <span class="contact__key">facebook</span><span class="contact__sep">:</span>
+          <a class="contact__val" href="https://www.facebook.com/smp1435" target="_blank" rel="noopener noreferrer">facebook.com/smp1435</a>
+        </li>
+      </ul>
+
+      <p class="footer-line">
+        <span class="prompt">root@portfolio:~$</span> exit<span class="cursor" aria-hidden="true">_</span>
+      </p>
+    </section>
+
+  </main>
+
+  <!-- popup รายละเอียด (JS เป็นคนเปิด/ปิด) -->
+  <div class="modal" id="modal" hidden>
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal__bar">
+        <span class="modal__path" id="modal-path"></span>
+        <button type="button" class="modal__close" id="modal-close">[ close ]</button>
+      </div>
+      <div class="modal__content">
+        <h3 class="modal__title" id="modal-title"></h3>
+        <p class="modal__meta" id="modal-meta"></p>
+        <p class="modal__tags" id="modal-tags"></p>
+        <p class="modal__desc" id="modal-desc"></p>
+        <p class="modal__link" id="modal-link"></p>
+        <div id="modal-media"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
